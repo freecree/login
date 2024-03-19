@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Basis Grotesque PRO';
+  font-style: normal;
+  font-weight: 700;
+  src: local('BasisGrotesqueArabicPro-Bold'), url(./assets/fonts/BasisGrotesqueArabicPro-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Basis Grotesque PRO';
+  font-style: normal;
+  font-weight: 500;
+  src: local('BasisGrotesqueArabicPro-Medium'), url(./assets/fonts/BasisGrotesqueArabicPro-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Basis Grotesque PRO';
+  font-style: normal;
+  font-weight: 400;
+  src: local('BasisGrotesqueArabicPro-Regular'), url(./assets/fonts/BasisGrotesqueArabicPro-Regular.ttf) format('truetype');
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Basis Grotesque PRO';
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}

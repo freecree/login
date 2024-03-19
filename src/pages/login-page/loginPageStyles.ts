@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '../../../components/button/Button';
-import colors from '../../../colors';
+import Button from '../../components/button/Button';
+import colors from '../../colors';
 
 export const OptionButtonsGroup = styled.div`
   display: flex;
@@ -40,6 +40,14 @@ export const Divider = styled.div`
   &::after {
     right: 0;
   }
+`;
+
+export const InputsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 30px;
 `;
 
 export const ForgotPasswordLink = styled.div`

@@ -8,6 +8,9 @@ export const Button = styled.button`
   cursor: pointer;
   border-radius: 8px;
   width: 100%;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export const OutlinedButton = styled(Button)`

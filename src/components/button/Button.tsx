@@ -5,12 +5,14 @@ interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   type?: ButtonType;
+  disabled?: boolean;
 }
 
 function Button({
   children,
   className,
   type = ButtonType.Filled,
+  disabled,
 }: ButtonProps) {
   console.log('button');
 
@@ -20,7 +22,11 @@ function Button({
   };
   const ButtonComponent = buttonComponents[type];
 
-  return <ButtonComponent className={className}>{children}</ButtonComponent>;
+  return (
+    <ButtonComponent disabled={disabled} className={className}>
+      {children}
+    </ButtonComponent>
+  );
 }
 
 export default Button;

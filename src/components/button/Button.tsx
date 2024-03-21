@@ -6,6 +6,7 @@ interface ButtonProps {
   className?: string;
   type?: ButtonType;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 function Button({
@@ -13,9 +14,8 @@ function Button({
   className,
   type = ButtonType.Filled,
   disabled,
+  onClick,
 }: ButtonProps) {
-  console.log('button');
-
   const buttonComponents = {
     [ButtonType.Outlined]: S.OutlinedButton,
     [ButtonType.Filled]: S.FilledButton,
@@ -23,7 +23,11 @@ function Button({
   const ButtonComponent = buttonComponents[type];
 
   return (
-    <ButtonComponent disabled={disabled} className={className}>
+    <ButtonComponent
+      onClick={onClick}
+      disabled={disabled}
+      className={className}
+    >
       {children}
     </ButtonComponent>
   );

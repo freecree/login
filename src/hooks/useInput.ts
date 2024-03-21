@@ -5,7 +5,11 @@ interface IValidations {
   minLength?: number;
 }
 
-const useValidation = (value: string, validations: IValidations) => {
+const useValidation = (
+  value: string,
+  name: string,
+  validations: IValidations,
+) => {
   const [emailError, setEmailError] = useState('');
   const [minLengthError, setMinLengthError] = useState('');
 
@@ -18,20 +22,20 @@ const useValidation = (value: string, validations: IValidations) => {
           const re = /^\S+@\S+\.\S+$/;
           re.test(value.toLocaleLowerCase())
             ? setEmailError('')
-            : setEmailError('Email is not valid');
+            : setEmailError(`${name} is not valid`);
           break;
         }
         case 'minLength': {
           value.length > (validations.minLength as number)
             ? setMinLengthError('')
             : setMinLengthError(
-                'The field should be at least 8 characters long',
+                `${name} should be at least ${validations.minLength} characters long`,
               );
           break;
         }
       }
     }
-  }, [value, validations]);
+  }, [value, validations, name]);
 
   useEffect(() => {
     if (emailError || minLengthError) {
@@ -47,11 +51,15 @@ const useValidation = (value: string, validations: IValidations) => {
   };
 };
 
-export const useInput = (initialValue: string, validations: IValidations) => {
+export const useInput = (
+  initialValue: string,
+  name: string,
+  validations: IValidations,
+) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setIsDirty] = useState(false);
 
-  const valid = useValidation(value, validations);
+  const valid = useValidation(value, name, validations);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

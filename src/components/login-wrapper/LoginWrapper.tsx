@@ -1,7 +1,7 @@
-import * as S from './loginWrapperStyles';
+import * as S from './styles';
 
-function LoginTitle({ children }: { children: React.ReactNode }) {
+function LoginWrapper({ children }: { children: React.ReactNode }) {
   return <S.LoginWrapper>{children}</S.LoginWrapper>;
 }
 
-export default LoginTitle;
+export default LoginWrapper;

@@ -1,10 +1,11 @@
-import { ButtonType } from '../../constants';
-import * as S from './buttonStyles';
+import { ButtonVariant } from '../../constants';
+import * as S from './styles';
 
 interface ButtonProps {
   children: React.ReactNode;
   className?: string;
-  type?: ButtonType;
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  variant?: ButtonVariant;
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -12,21 +13,23 @@ interface ButtonProps {
 function Button({
   children,
   className,
-  type = ButtonType.Filled,
+  type,
+  variant = ButtonVariant.Filled,
   disabled,
   onClick,
 }: ButtonProps) {
   const buttonComponents = {
-    [ButtonType.Outlined]: S.OutlinedButton,
-    [ButtonType.Filled]: S.FilledButton,
+    [ButtonVariant.Outlined]: S.OutlinedButton,
+    [ButtonVariant.Filled]: S.FilledButton,
   };
-  const ButtonComponent = buttonComponents[type];
+  const ButtonComponent = buttonComponents[variant];
 
   return (
     <ButtonComponent
-      onClick={onClick}
+      onMouseDown={onClick}
       disabled={disabled}
       className={className}
+      type={type}
     >
       {children}
     </ButtonComponent>

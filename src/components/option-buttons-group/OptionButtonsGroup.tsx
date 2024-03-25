@@ -1,15 +1,15 @@
-import * as S from './optionButtonsGroupStyles';
+import * as S from './styles';
 import GoogleIcon from '../../assets/icon_google.svg';
 import GithubIcon from '../../assets/icon_github.svg';
-import { ButtonType } from '../../constants';
+import { ButtonVariant } from '../../constants';
 
 function OptionButtonsGroup() {
   return (
     <S.OptionButtonsGroup>
-      <S.OptionButton type={ButtonType.Outlined}>
+      <S.OptionButton variant={ButtonVariant.Outlined}>
         <img src={GoogleIcon} /> Google
       </S.OptionButton>
-      <S.OptionButton type={ButtonType.Outlined}>
+      <S.OptionButton variant={ButtonVariant.Outlined}>
         <img src={GithubIcon} /> Github
       </S.OptionButton>
     </S.OptionButtonsGroup>

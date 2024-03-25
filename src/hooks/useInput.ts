@@ -65,7 +65,9 @@ export const useInput = (
     setValue(e.target.value);
   };
 
-  const onBlur = () => {
+  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    console.log('in blur: ', e);
+    e.persist();
     setIsDirty(true);
   };
 

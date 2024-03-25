@@ -1,7 +1,7 @@
 import Logo from '../../assets/logo.svg';
-import InputErrorMessage from '../../components/error-message/ErrorMessage';
+import ErrorMessage from '../../components/error-message/ErrorMessage';
 import LoginWrapper from '../../components/login-wrapper/LoginWrapper';
-import * as S from './loginPageStyles';
+import * as S from './styles';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import LoginTitle from '../../components/login-title/LoginTitle';
@@ -11,6 +11,8 @@ import { login } from '../../services/LoginService';
 import { ErrorLoginResponse } from '../../models/response/LoginResponse';
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function LoginPage() {
   const email = useInput('', 'Email', { isEmail: true, minLength: 15 });
@@ -60,53 +62,51 @@ function LoginPage() {
     <LoginWrapper>
       <img src={Logo} />
       <LoginTitle>Log in to your account</LoginTitle>
-      <OptionButtonsGroup />
-      <S.Divider>OR</S.Divider>
-      <S.InputsWrapper>
-        <div>
-          <Input
-            value={email.value}
-            placeholder='Work email'
-            type='email'
-            onChange={email.onChange}
-            onBlur={email.onBlur}
-          />
-          {email.isDirty && email.emailError && (
-            <InputErrorMessage mt='10px'>{email.emailError}</InputErrorMessage>
-          )}
-          {email.isDirty && email.minLengthError && (
-            <InputErrorMessage mt='10px'>
-              {email.minLengthError}
-            </InputErrorMessage>
-          )}
-        </div>
-        {(email.isDirty || email.value) && (
+      <form style={{ width: '100%' }}>
+        <OptionButtonsGroup />
+        <S.Divider>OR</S.Divider>
+        <S.InputsWrapper>
           <div>
             <Input
-              value={password.value}
-              placeholder='Password'
-              type='password'
-              onChange={password.onChange}
-              onBlur={password.onBlur}
+              value={email.value}
+              placeholder='Work email'
+              type='email'
+              onChange={email.onChange}
+              onBlur={email.onBlur}
             />
-            {password.isDirty && password.minLengthError && (
-              <InputErrorMessage mt='10px'>
-                {password.minLengthError}
-              </InputErrorMessage>
+            {email.value && email.emailError && (
+              <ErrorMessage mt='10px'>{email.emailError}</ErrorMessage>
             )}
-            <S.ForgotPasswordLink>Forgot your password?</S.ForgotPasswordLink>
+            {email.value && email.minLengthError && (
+              <ErrorMessage mt='10px'>{email.minLengthError}</ErrorMessage>
+            )}
           </div>
-        )}
-      </S.InputsWrapper>
-      {serverError && (
-        <InputErrorMessage mb='10px'>{serverError}</InputErrorMessage>
-      )}
-      <Button onClick={handleSubmit} disabled={!isFormValid()}>
-        Log in to Qencode
-      </Button>
-      <S.SignUpCaption>
-        Is your company new to Qencode? <S.SignUpLink>Sign up</S.SignUpLink>
-      </S.SignUpCaption>
+          {(email.isDirty || email.value) && (
+            <div>
+              <Input
+                value={password.value}
+                placeholder='Password'
+                type='password'
+                onChange={password.onChange}
+                onBlur={password.onBlur}
+              />
+              {password.isDirty && password.minLengthError && (
+                <ErrorMessage mt='10px'>{password.minLengthError}</ErrorMessage>
+              )}
+              <S.ForgotPasswordLink to='/login/forgot-password/'>
+                Forgot your password?
+              </S.ForgotPasswordLink>
+            </div>
+          )}
+        </S.InputsWrapper>
+        {serverError && <ErrorMessage mb='10px'>{serverError}</ErrorMessage>}
+        <Button onClick={handleSubmit} disabled={!isFormValid()}>
+          Log in to Qencode
+        </Button>
+        <S.SignUpCaption>
+          Is your company new to Qencode? <S.SignUpLink>Sign up</S.SignUpLink>
+        </S.SignUpCaption>
+      </form>
     </LoginWrapper>
   );
 }

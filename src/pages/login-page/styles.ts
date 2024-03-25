@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '../../components/button/Button';
 import colors from '../../colors';
+import { Link } from 'react-router-dom';
 
 export const OptionButtonsGroup = styled.div`
   display: flex;
@@ -50,12 +51,14 @@ export const InputsWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-export const ForgotPasswordLink = styled.div`
+export const ForgotPasswordLink = styled(Link)`
   font-size: 14px;
   font-weight: 500;
   margin-top: 15px;
   color: ${colors.main};
   text-align: right;
+  text-decoration: none;
+  display: block;
 `;
 
 export const SignUpCaption = styled.div`

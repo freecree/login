@@ -1,17 +1,17 @@
-import * as S from './errorMessageStyles';
+import * as S from './styles';
 
-interface InputErrorMessageProps {
-  children: React.ReactNode;
+interface ErrorMessageProps {
+  children?: React.ReactNode;
   mt?: string;
   mb?: string;
 }
 
-function InputErrorMessage({ children, mt, mb }: InputErrorMessageProps) {
+function ErrorMessage({ children, mt, mb }: ErrorMessageProps) {
   return (
-    <S.InputErrorMessage mt={mt} mb={mb}>
+    <S.ErrorMessage $mt={mt} $mb={mb}>
       {children}
-    </S.InputErrorMessage>
+    </S.ErrorMessage>
   );
 }
 
-export default InputErrorMessage;
+export default ErrorMessage;
